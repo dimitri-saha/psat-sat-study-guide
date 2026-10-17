@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
-import { sections } from '../content/index'
+import { sections, getQuestions } from '../content/index'
+import { readCorrectCount } from '../hooks/useProgress'
 
 export default function DomainPage() {
   const { sectionSlug, domainSlug } = useParams<{ sectionSlug: string; domainSlug: string }>()
@@ -11,11 +12,16 @@ export default function DomainPage() {
     <div>
       <h1>{domain.title}</h1>
       <ul>
-        {domain.subsections.map(sub => (
-          <li key={sub.slug}>
-            <Link to={`/${section.slug}/${domain.slug}/${sub.slug}`}>{sub.title}</Link>
-          </li>
-        ))}
+        {domain.subsections.map(sub => {
+          const questions = getQuestions(domain.slug, sub.slug)
+          const correct = readCorrectCount(`${domain.slug}/${sub.slug}`, questions.map(q => q.id))
+          return (
+            <li key={sub.slug}>
+              <Link to={`/${section.slug}/${domain.slug}/${sub.slug}`}>{sub.title}</Link>
+              {' '}<span>({correct} / {questions.length} correct)</span>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

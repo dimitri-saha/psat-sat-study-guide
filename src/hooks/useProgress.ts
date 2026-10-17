@@ -16,6 +16,11 @@ function loadProgress(subsectionKey: string): ProgressMap {
   return raw ? JSON.parse(raw) : {}
 }
 
+export function readCorrectCount(subsectionKey: string, questionIds: string[]): number {
+  const progress = loadProgress(subsectionKey)
+  return questionIds.filter(id => progress[id]?.correct).length
+}
+
 export function useProgress(subsectionKey: string, questionIds: string[]) {
   const [progress, setProgress] = useState<ProgressMap>(() => loadProgress(subsectionKey))
 

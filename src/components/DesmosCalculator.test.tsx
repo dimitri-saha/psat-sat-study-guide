@@ -4,7 +4,6 @@ import DesmosCalculator from './DesmosCalculator'
 
 describe('DesmosCalculator', () => {
   beforeEach(() => {
-    // @ts-expect-error test double
     window.Desmos = {
       GraphingCalculator: vi.fn(() => ({
         setExpression: vi.fn(),
@@ -15,13 +14,11 @@ describe('DesmosCalculator', () => {
 
   it('mounts a Desmos calculator and pushes each expression', async () => {
     const setExpression = vi.fn()
-    // @ts-expect-error test double
     window.Desmos.GraphingCalculator = vi.fn(() => ({ setExpression, setMathBounds: vi.fn() }))
 
     render(<DesmosCalculator config={{ expressions: ['y=2x+1', 'y=x^2'] }} />)
 
     await waitFor(() => {
-      // @ts-expect-error test double
       expect(window.Desmos.GraphingCalculator).toHaveBeenCalled()
       expect(setExpression).toHaveBeenCalledWith({ latex: 'y=2x+1' })
       expect(setExpression).toHaveBeenCalledWith({ latex: 'y=x^2' })
@@ -30,7 +27,6 @@ describe('DesmosCalculator', () => {
 
   it('applies bounds when provided', async () => {
     const setMathBounds = vi.fn()
-    // @ts-expect-error test double
     window.Desmos.GraphingCalculator = vi.fn(() => ({ setExpression: vi.fn(), setMathBounds }))
 
     render(<DesmosCalculator config={{ expressions: [], bounds: { left: -10, right: 10, top: 10, bottom: -10 } }} />)

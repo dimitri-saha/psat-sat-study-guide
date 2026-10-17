@@ -1,32 +1,42 @@
-# React + TypeScript + Vite
+# PSAT/SAT Study Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A static, no-backend PSAT/SAT study site: lessons with embedded video, hand-crafted
+practice questions with progressive hints and full walkthroughs, and an embedded
+Desmos graphing calculator for math questions. Progress is saved per-device in
+`localStorage` — there are no accounts and no server.
 
-Currently, two official plugins are available:
+## Running locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Testing
+
+```bash
+npm run test
+```
+
+## Building for production
+
+```bash
+npm run build
+```
+
+Outputs static files to `dist/`, deployable to any static host (Netlify, Vercel,
+GitHub Pages, etc.).
+
+## Desmos API key
+
+`index.html` currently uses Desmos's publicly documented demo API key. Before any
+real production deploy, register your own key at https://www.desmos.com/api and
+swap it into the `<script>` tag's `apiKey` parameter.
+
+## Adding more content
+
+Every lesson and its practice questions live in one file under `src/content/`,
+grouped by section (`readingWriting/` or `math/`) and then by domain. Each
+domain has an `index.ts` that registers its subsections — follow that pattern
+to add a new subsection, and add it to that domain's `subsections` list so it
+appears in navigation.

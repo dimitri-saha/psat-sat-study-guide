@@ -16,7 +16,6 @@ vi.mock('../content/index', () => ({
 
 describe('DesmosTopicPage', () => {
   beforeEach(() => {
-    // @ts-expect-error test double
     window.Desmos = { GraphingCalculator: vi.fn(() => ({ setExpression: vi.fn(), setMathBounds: vi.fn() })) }
   })
 
@@ -30,7 +29,6 @@ describe('DesmosTopicPage', () => {
     expect(screen.getByText('Explanation body.')).toBeInTheDocument()
     expect(screen.getByText('Tip one.')).toBeInTheDocument()
     await waitFor(() => {
-      // @ts-expect-error test double
       expect(window.Desmos.GraphingCalculator).toHaveBeenCalled()
     })
   })
