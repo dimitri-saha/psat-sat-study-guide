@@ -3,6 +3,7 @@ import { registerInformationAndIdeas } from './readingWriting/informationAndIdea
 import { registerCraftAndStructure } from './readingWriting/craftAndStructure'
 import { registerExpressionOfIdeas } from './readingWriting/expressionOfIdeas'
 import { registerStandardEnglishConventions } from './readingWriting/standardEnglishConventions'
+import { registerAlgebra } from './math/algebra'
 
 export { getLesson, getQuestions } from './registry'
 
@@ -16,5 +17,10 @@ export const sections: SectionMeta[] = [
       registerExpressionOfIdeas(),
       registerStandardEnglishConventions(),
     ],
+  },
+  {
+    slug: 'math',
+    title: 'Math',
+    domains: [registerAlgebra()],
   },
 ]

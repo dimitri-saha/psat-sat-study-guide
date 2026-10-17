@@ -1,0 +1,82 @@
+import type { Lesson, Question } from '../../types'
+
+export const lesson: Lesson = {
+  domain: 'algebra',
+  subsection: 'linear-equations-two-variables',
+  title: 'Linear Equations in Two Variables and Their Graphs',
+  summary: 'Every linear equation y = mx + b describes a straight line with slope m and y-intercept b.',
+  body: "The slope-intercept form y = mx + b tells you everything about a line's graph: m is the slope (rise over run between any two points), and b is the y-intercept (the point where the line crosses the x = 0 axis). To find the slope between two points, divide the change in y by the change in x. To find where a line crosses the x-axis (the x-intercept), set y = 0 and solve for x. Desmos is especially useful here: graph the equation directly and read the intercepts off the graph to check your algebra.",
+  tips: [
+    'Slope = (y2 - y1) / (x2 - x1) — always subtract in the same order in both the numerator and denominator.',
+    'To find a y-intercept, set x = 0. To find an x-intercept, set y = 0.',
+    'If a point satisfies an equation, plugging its x and y values into the equation makes both sides equal.',
+  ],
+  videoId: 'REPLACE_WITH_REAL_ID',
+}
+
+export const questions: Question[] = [
+  {
+    id: 'alg-letv-1',
+    domain: 'algebra',
+    subsection: 'linear-equations-two-variables',
+    difficulty: 'medium',
+    prompt: 'A line passes through the points (2, 5) and (4, 9). What is the y-intercept of this line?',
+    correctAnswer: '1',
+    hints: ['Find the slope first using both points.', 'Then use one point and the slope to solve for b in y = mx + b.'],
+    walkthrough: [
+      'Slope = (9 - 5) / (4 - 2) = 4 / 2 = 2',
+      'Using point (2, 5): 5 = 2(2) + b, so 5 = 4 + b',
+      'b = 1, so the y-intercept is 1',
+    ],
+    desmosConfig: { expressions: ['y=2x+1', '(2,5)', '(4,9)'] },
+  },
+  {
+    id: 'alg-letv-2',
+    domain: 'algebra',
+    subsection: 'linear-equations-two-variables',
+    difficulty: 'easy',
+    prompt: 'Which point lies on the line y = -3x + 7?',
+    choices: ['(2, 1)', '(1, 3)', '(3, -1)', '(0, -7)'],
+    correctAnswer: '(2, 1)',
+    hints: ['Plug each point\'s x-value into the equation and check if it produces the matching y-value.', 'Start with x = 2: y = -3(2) + 7.'],
+    walkthrough: ['Test (2, 1): y = -3(2) + 7 = -6 + 7 = 1, which matches.', 'The other points do not satisfy the equation when checked the same way.'],
+    desmosConfig: { expressions: ['y=-3x+7'] },
+  },
+  {
+    id: 'alg-letv-3',
+    domain: 'algebra',
+    subsection: 'linear-equations-two-variables',
+    difficulty: 'medium',
+    prompt: 'A line has a slope of 1/2 and passes through (0, -3). At what x-value does this line cross the x-axis?',
+    correctAnswer: '6',
+    hints: ['Write the equation in slope-intercept form first.', 'The x-axis is where y = 0.'],
+    walkthrough: ['The equation is y = (1/2)x - 3', 'Set y = 0: 0 = (1/2)x - 3', 'Solve: (1/2)x = 3, so x = 6'],
+    desmosConfig: { expressions: ['y=0.5x-3'] },
+  },
+  {
+    id: 'alg-letv-4',
+    domain: 'algebra',
+    subsection: 'linear-equations-two-variables',
+    difficulty: 'medium',
+    prompt: 'Given the line y = 4x - 9, what is its x-intercept?',
+    correctAnswer: '9/4',
+    hints: ['The x-intercept is where y = 0.', 'Substitute y = 0 and solve for x.'],
+    walkthrough: ['Set y = 0: 0 = 4x - 9', 'Add 9 to both sides: 4x = 9', 'Divide by 4: x = 9/4'],
+    desmosConfig: { expressions: ['y=4x-9'] },
+  },
+  {
+    id: 'alg-letv-5',
+    domain: 'algebra',
+    subsection: 'linear-equations-two-variables',
+    difficulty: 'hard',
+    prompt: 'The lines y = 2x + 3 and y = -x + 9 intersect at one point. What is the y-value at that point?',
+    correctAnswer: '7',
+    hints: ['At the intersection, both equations have the same x and y values.', 'Set the two right-hand sides equal to each other and solve for x first.'],
+    walkthrough: [
+      'Set 2x + 3 = -x + 9',
+      'Add x to both sides: 3x + 3 = 9, so 3x = 6, giving x = 2',
+      'Substitute into either equation: y = 2(2) + 3 = 7',
+    ],
+    desmosConfig: { expressions: ['y=2x+3', 'y=-x+9'] },
+  },
+]

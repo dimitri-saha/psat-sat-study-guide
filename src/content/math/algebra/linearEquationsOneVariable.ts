@@ -1,0 +1,76 @@
+import type { Lesson, Question } from '../../types'
+
+export const lesson: Lesson = {
+  domain: 'algebra',
+  subsection: 'linear-equations-one-variable',
+  title: 'Linear Equations in One Variable',
+  summary: 'Isolate the variable by undoing operations in reverse order.',
+  body: "To solve a linear equation, first distribute any multiplication across parentheses, then combine like terms on each side, then move all variable terms to one side and all constants to the other, and finally divide to isolate the variable. You can always check your answer by substituting it back into the original equation. You can also verify graphically: move everything to one side so the equation equals zero, graph that expression as y, and find where the graph crosses the x-axis — that x-value is your solution.",
+  tips: [
+    'Distribute before combining like terms — a common error is combining terms that are still inside parentheses.',
+    'Whatever you do to one side of the equation, do the exact same thing to the other side.',
+    'Plug your final answer back into the ORIGINAL equation (not a simplified version) to check it.',
+  ],
+  videoId: 'REPLACE_WITH_REAL_ID',
+}
+
+export const questions: Question[] = [
+  {
+    id: 'alg-leov-1',
+    domain: 'algebra',
+    subsection: 'linear-equations-one-variable',
+    difficulty: 'easy',
+    prompt: 'Solve for x: 3(x - 4) = 2x + 5',
+    correctAnswer: '17',
+    hints: ['Distribute the 3 on the left side first.', 'Collect the x terms on one side and the constants on the other.'],
+    walkthrough: ['3x - 12 = 2x + 5', 'Subtract 2x from both sides: x - 12 = 5', 'Add 12 to both sides: x = 17'],
+    desmosConfig: { expressions: ['y=3(x-4)-(2x+5)'], bounds: { left: -5, right: 30, top: 20, bottom: -20 } },
+  },
+  {
+    id: 'alg-leov-2',
+    domain: 'algebra',
+    subsection: 'linear-equations-one-variable',
+    difficulty: 'medium',
+    prompt: 'Solve for x: (2x + 1) / 3 = x - 2',
+    correctAnswer: '7',
+    hints: ['Multiply both sides by 3 to clear the fraction.', 'Then move the x terms to one side.'],
+    walkthrough: ['Multiply both sides by 3: 2x + 1 = 3x - 6', 'Subtract 2x from both sides: 1 = x - 6', 'Add 6 to both sides: x = 7'],
+  },
+  {
+    id: 'alg-leov-3',
+    domain: 'algebra',
+    subsection: 'linear-equations-one-variable',
+    difficulty: 'easy',
+    prompt: 'If 5x - 7 = 2x + 8, what is the value of x?',
+    choices: ['3', '5', '7', '15'],
+    correctAnswer: '5',
+    hints: ['Move all the x terms to one side first.', 'Then isolate x by dividing.'],
+    walkthrough: ['Subtract 2x from both sides: 3x - 7 = 8', 'Add 7 to both sides: 3x = 15', 'Divide by 3: x = 5'],
+  },
+  {
+    id: 'alg-leov-4',
+    domain: 'algebra',
+    subsection: 'linear-equations-one-variable',
+    difficulty: 'hard',
+    prompt: 'Solve for x: -2(x + 3) = 4(x - 1)',
+    correctAnswer: '-1/3',
+    hints: ['Distribute on both sides before combining anything.', 'Collect all the x terms on one side.'],
+    walkthrough: [
+      'Distribute both sides: -2x - 6 = 4x - 4',
+      'Add 2x to both sides: -6 = 6x - 4',
+      'Add 4 to both sides: -2 = 6x, so x = -2/6 = -1/3',
+    ],
+    desmosConfig: { expressions: ['y=-2(x+3)-4(x-1)'], bounds: { left: -5, right: 5, top: 20, bottom: -20 } },
+  },
+  {
+    id: 'alg-leov-5',
+    domain: 'algebra',
+    subsection: 'linear-equations-one-variable',
+    difficulty: 'medium',
+    prompt: 'If (x + 3) / 4 = (x - 1) / 2, what is the value of x?',
+    choices: ['3', '5', '7', '9'],
+    correctAnswer: '5',
+    hints: ['Cross-multiply to clear both fractions at once.', 'Then distribute and collect like terms.'],
+    walkthrough: ['Cross-multiply: 2(x + 3) = 4(x - 1)', 'Distribute: 2x + 6 = 4x - 4', 'Solve: 10 = 2x, so x = 5'],
+  },
+]

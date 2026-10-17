@@ -1,0 +1,75 @@
+import type { Lesson, Question } from '../../types'
+
+export const lesson: Lesson = {
+  domain: 'algebra',
+  subsection: 'systems-of-equations',
+  title: 'Systems of Linear Equations',
+  summary: 'Solve two equations with two unknowns using substitution, elimination, or a graph.',
+  body: "A system of two linear equations has one solution where the two lines intersect, unless the lines are parallel (no solution) or identical (infinitely many solutions). To solve algebraically, use substitution (solve one equation for a variable and plug it into the other) or elimination (add or subtract the equations to cancel a variable). On Desmos, you can just graph both lines and read the intersection point directly, or use the table feature to test answer choices quickly.",
+  tips: [
+    'Elimination works best when the coefficients of one variable are already the same or opposite in both equations.',
+    'Two lines have no solution when they have the same slope but different y-intercepts (parallel).',
+    'Two equations have infinitely many solutions when they are the same line written differently (same slope AND same y-intercept).',
+  ],
+  videoId: 'REPLACE_WITH_REAL_ID',
+}
+
+export const questions: Question[] = [
+  {
+    id: 'alg-soe-1',
+    domain: 'algebra',
+    subsection: 'systems-of-equations',
+    difficulty: 'medium',
+    prompt: 'If x + y = 10 and x - y = 2, what is the value of x * y?',
+    correctAnswer: '24',
+    hints: ['Add the two equations together to eliminate y.', 'Once you have x, substitute back to find y.'],
+    walkthrough: ['Add the equations: 2x = 12, so x = 6', 'Substitute into x + y = 10: y = 4', 'x * y = 6 * 4 = 24'],
+    desmosConfig: { expressions: ['x+y=10', 'x-y=2'] },
+  },
+  {
+    id: 'alg-soe-2',
+    domain: 'algebra',
+    subsection: 'systems-of-equations',
+    difficulty: 'easy',
+    prompt: 'If 2x + 3y = 12 and x = 3, what is the value of x + y?',
+    correctAnswer: '5',
+    hints: ['Substitute x = 3 directly into the first equation.', 'Solve for y, then add x and y.'],
+    walkthrough: ['Substitute: 2(3) + 3y = 12, so 6 + 3y = 12', 'Subtract 6: 3y = 6, so y = 2', 'x + y = 3 + 2 = 5'],
+  },
+  {
+    id: 'alg-soe-3',
+    domain: 'algebra',
+    subsection: 'systems-of-equations',
+    difficulty: 'medium',
+    prompt: 'If 3x - 2y = 4 and x + 2y = 12, what is the value of x - y?',
+    correctAnswer: '0',
+    hints: ['Add the two equations to eliminate y.', 'Then substitute back to find y and compute x - y.'],
+    walkthrough: ['Add the equations: 4x = 16, so x = 4', 'Substitute into x + 2y = 12: 4 + 2y = 12, so y = 4', 'x - y = 4 - 4 = 0'],
+    desmosConfig: { expressions: ['3x-2y=4', 'x+2y=12'] },
+  },
+  {
+    id: 'alg-soe-4',
+    domain: 'algebra',
+    subsection: 'systems-of-equations',
+    difficulty: 'medium',
+    prompt: 'If 4x + y = 11 and y = 2x - 1, what is the value of x + y?',
+    correctAnswer: '5',
+    hints: ['Substitute the expression for y directly into the first equation.', 'Solve for x first, then find y.'],
+    walkthrough: ['Substitute: 4x + (2x - 1) = 11, so 6x - 1 = 11', 'Add 1: 6x = 12, so x = 2', 'y = 2(2) - 1 = 3, so x + y = 5'],
+  },
+  {
+    id: 'alg-soe-5',
+    domain: 'algebra',
+    subsection: 'systems-of-equations',
+    difficulty: 'hard',
+    prompt: 'The system y = 2x + 5 and y = 2x + k has infinitely many solutions. What is the value of k?',
+    choices: ['-5', '0', '2', '5'],
+    correctAnswer: '5',
+    hints: ['Infinitely many solutions means the two equations describe the exact same line.', 'Compare the y-intercepts of both lines.'],
+    walkthrough: [
+      'Both lines already have the same slope, 2.',
+      'For infinitely many solutions, the lines must be identical, so the y-intercepts must match too.',
+      'k must equal 5 to match the first equation\'s y-intercept.',
+    ],
+  },
+]
