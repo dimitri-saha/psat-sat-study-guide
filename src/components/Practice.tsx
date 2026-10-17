@@ -5,22 +5,24 @@ import DesmosCalculator from './DesmosCalculator'
 import styles from './Practice.module.css'
 
 export default function Practice({ subsectionKey, questions }: { subsectionKey: string; questions: Question[] }) {
-  if (questions.length === 0) {
-    return <p>No questions available for this subsection yet.</p>
-  }
-
   const { record, correctCount } = useProgress(subsectionKey, questions.map(q => q.id))
   const [index, setIndex] = useState(0)
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState<string | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [submitted, setSubmitted] = useState(false)
   const [wasCorrect, setWasCorrect] = useState(false)
   const [showWalkthrough, setShowWalkthrough] = useState(false)
 
+  if (questions.length === 0) {
+    return <p>No questions available for this subsection yet.</p>
+  }
+
   const question = questions[index]
 
   function handleSubmit() {
-    const correct = selected.trim().toLowerCase() === question.correctAnswer.trim().toLowerCase()
+    // Submit is disabled while selected === null, so selected is guaranteed
+    // to be a string (possibly empty) by the time this runs.
+    const correct = selected !== null && selected.trim().toLowerCase() === question.correctAnswer.trim().toLowerCase()
     setWasCorrect(correct)
     setSubmitted(true)
     record(question.id, correct)
@@ -28,7 +30,7 @@ export default function Practice({ subsectionKey, questions }: { subsectionKey: 
 
   function handleNext() {
     setIndex(i => Math.min(i + 1, questions.length - 1))
-    setSelected('')
+    setSelected(null)
     setHintsShown(0)
     setSubmitted(false)
     setShowWalkthrough(false)
@@ -49,14 +51,14 @@ export default function Practice({ subsectionKey, questions }: { subsectionKey: 
                   className={selected === choice ? styles.selected : ''}
                   onClick={() => setSelected(choice)}
                 >
-                  {choice}
+                  {choice === '' ? '(no punctuation)' : choice}
                 </button>
               ))}
             </div>
           ) : (
             <input
               aria-label="Your answer"
-              value={selected}
+              value={selected ?? ''}
               onChange={e => setSelected(e.target.value)}
             />
           )}
@@ -64,7 +66,7 @@ export default function Practice({ subsectionKey, questions }: { subsectionKey: 
             <button onClick={() => setHintsShown(h => Math.min(h + 1, question.hints.length))}>
               Get a hint
             </button>
-            <button onClick={handleSubmit} disabled={!selected}>Submit</button>
+            <button onClick={handleSubmit} disabled={selected === null}>Submit</button>
           </div>
           {hintsShown > 0 && (
             <ul className={styles.hints}>

@@ -27,6 +27,18 @@ const gridInQuestion: Question = {
   walkthrough: ['3x = 15', 'x = 5'],
 }
 
+const emptyChoiceQuestion: Question = {
+  id: 'sec-bd-3',
+  domain: 'standard-english-conventions',
+  subsection: 'boundaries',
+  difficulty: 'medium',
+  prompt: 'The committee reviewed dozens of applications______ only three candidates were selected for interviews.',
+  choices: [';', ',', '', ', being that'],
+  correctAnswer: ';',
+  hints: ['Check whether both halves are independent clauses.'],
+  walkthrough: ['A semicolon can directly join two independent clauses.'],
+}
+
 describe('Practice', () => {
   beforeEach(() => localStorage.clear())
 
@@ -74,5 +86,17 @@ describe('Practice', () => {
     fireEvent.click(screen.getByRole('button', { name: /submit/i }))
     fireEvent.click(screen.getByRole('button', { name: /show walkthrough/i }))
     expect(screen.getByText(mcQuestion.walkthrough[0])).toBeInTheDocument()
+  })
+
+  it('renders a usable, non-pre-selected button for an empty-string choice', () => {
+    render(<Practice subsectionKey="standard-english-conventions/boundaries" questions={[emptyChoiceQuestion]} />)
+    const emptyChoiceButton = screen.getByRole('button', { name: '(no punctuation)' })
+    expect(emptyChoiceButton).toBeInTheDocument()
+    expect(emptyChoiceButton.className).not.toContain('selected')
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    expect(submitButton).toBeDisabled()
+    fireEvent.click(emptyChoiceButton)
+    expect(emptyChoiceButton.className).toMatch(/selected/)
+    expect(submitButton).not.toBeDisabled()
   })
 })

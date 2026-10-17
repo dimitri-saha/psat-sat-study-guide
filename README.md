@@ -33,6 +33,14 @@ GitHub Pages, etc.).
 real production deploy, register your own key at https://www.desmos.com/api and
 swap it into the `<script>` tag's `apiKey` parameter.
 
+## Known limitation: placeholder video IDs
+
+Every lesson's `videoId` is currently set to the literal placeholder
+`REPLACE_WITH_REAL_ID` — real video curation requires manual web verification
+of each lesson's content and was deliberately deferred, so embedded videos are
+non-functional until a future curation pass replaces these placeholders with
+real IDs.
+
 ## Adding more content
 
 Every lesson and its practice questions live in one file under `src/content/`,
