@@ -1,8 +1,12 @@
 import type { SectionMeta } from './types'
+import { registerInformationAndIdeas } from './readingWriting/informationAndIdeas'
 
 export { getLesson, getQuestions } from './registry'
 
-// Tasks 6-14 each add one import here (a domain's `register*()` function, which
-// calls `registerContent` for each of its subsections and returns that domain's
-// DomainMeta) and push the result into the matching section's `domains` array below.
-export const sections: SectionMeta[] = []
+export const sections: SectionMeta[] = [
+  {
+    slug: 'reading-writing',
+    title: 'Reading & Writing',
+    domains: [registerInformationAndIdeas()],
+  },
+]
