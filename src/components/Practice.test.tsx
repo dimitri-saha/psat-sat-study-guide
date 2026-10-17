@@ -30,6 +30,11 @@ const gridInQuestion: Question = {
 describe('Practice', () => {
   beforeEach(() => localStorage.clear())
 
+  it('renders a fallback message when questions array is empty', () => {
+    render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[]} />)
+    expect(screen.getByText('No questions available for this subsection yet.')).toBeInTheDocument()
+  })
+
   it('reveals hints one at a time without showing the answer', () => {
     render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[mcQuestion]} />)
     expect(screen.queryByText(mcQuestion.hints[1])).not.toBeInTheDocument()

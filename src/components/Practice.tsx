@@ -5,6 +5,10 @@ import DesmosCalculator from './DesmosCalculator'
 import styles from './Practice.module.css'
 
 export default function Practice({ subsectionKey, questions }: { subsectionKey: string; questions: Question[] }) {
+  if (questions.length === 0) {
+    return <p>No questions available for this subsection yet.</p>
+  }
+
   const { record, correctCount } = useProgress(subsectionKey, questions.map(q => q.id))
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState('')
