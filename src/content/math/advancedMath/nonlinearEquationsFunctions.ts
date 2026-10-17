@@ -1,0 +1,76 @@
+import type { Lesson, Question } from '../../types'
+
+export const lesson: Lesson = {
+  domain: 'advanced-math',
+  subsection: 'nonlinear-equations-functions',
+  title: 'Nonlinear Equations and Functions',
+  summary: 'Solve quadratics by factoring or the quadratic formula, and evaluate functions at given inputs.',
+  body: "A quadratic equation ax^2 + bx + c = 0 can often be solved by factoring into two binomials, or always by the quadratic formula x = (-b ± sqrt(b^2 - 4ac)) / 2a. The vertex of a parabola y = ax^2 + bx + c is at x = -b / 2a; plug that x back in to find the vertex's y-coordinate. To evaluate a function f(x) at a specific input, substitute that number everywhere x appears and simplify. Graphing the equation on Desmos lets you check your solutions visually — the solutions to ax^2+bx+c=0 are exactly where the parabola crosses the x-axis.",
+  tips: [
+    'Before using the quadratic formula, check if the expression factors easily — it is usually faster.',
+    'The discriminant b^2 - 4ac tells you how many real solutions exist: positive means two, zero means one, negative means none.',
+    'f(5) means "substitute 5 for every x" — do not confuse it with multiplying f by 5.',
+  ],
+  videoId: 'REPLACE_WITH_REAL_ID',
+}
+
+export const questions: Question[] = [
+  {
+    id: 'am-nef-1',
+    domain: 'advanced-math',
+    subsection: 'nonlinear-equations-functions',
+    difficulty: 'medium',
+    prompt: 'The equation x^2 - 5x + 6 = 0 has two solutions. What is their sum?',
+    correctAnswer: '5',
+    hints: ['Try factoring the quadratic first.', 'Once you have both solutions, add them together.'],
+    walkthrough: ['Factor: (x - 2)(x - 3) = 0', 'The solutions are x = 2 and x = 3', 'Their sum is 2 + 3 = 5'],
+    desmosConfig: { expressions: ['y=x^2-5x+6'], bounds: { left: -5, right: 10, top: 10, bottom: -10 } },
+  },
+  {
+    id: 'am-nef-2',
+    domain: 'advanced-math',
+    subsection: 'nonlinear-equations-functions',
+    difficulty: 'easy',
+    prompt: 'What is the positive solution to x^2 - 9 = 0?',
+    correctAnswer: '3',
+    hints: ['Add 9 to both sides first.', 'Remember a square root has both a positive and negative solution.'],
+    walkthrough: ['x^2 = 9', 'x = 3 or x = -3', 'The positive solution is 3'],
+    desmosConfig: { expressions: ['y=x^2-9'] },
+  },
+  {
+    id: 'am-nef-3',
+    domain: 'advanced-math',
+    subsection: 'nonlinear-equations-functions',
+    difficulty: 'medium',
+    prompt: 'If f(x) = x^2 - 4x + 3, what is f(5)?',
+    correctAnswer: '8',
+    hints: ['Substitute 5 for every x in the expression.', 'Follow order of operations: exponent first, then multiplication, then subtraction.'],
+    walkthrough: ['f(5) = (5)^2 - 4(5) + 3', '= 25 - 20 + 3', '= 8'],
+  },
+  {
+    id: 'am-nef-4',
+    domain: 'advanced-math',
+    subsection: 'nonlinear-equations-functions',
+    difficulty: 'hard',
+    prompt: 'What is the greater of the two solutions to 2x^2 + 3x - 2 = 0?',
+    correctAnswer: '1/2',
+    hints: ['Try the quadratic formula with a = 2, b = 3, c = -2.', 'The discriminant is b^2 - 4ac.'],
+    walkthrough: [
+      'Discriminant: 3^2 - 4(2)(-2) = 9 + 16 = 25',
+      'x = (-3 ± sqrt(25)) / (2 * 2) = (-3 ± 5) / 4',
+      'The two solutions are 1/2 and -2; the greater one is 1/2',
+    ],
+    desmosConfig: { expressions: ['y=2x^2+3x-2'], bounds: { left: -5, right: 5, top: 10, bottom: -10 } },
+  },
+  {
+    id: 'am-nef-5',
+    domain: 'advanced-math',
+    subsection: 'nonlinear-equations-functions',
+    difficulty: 'hard',
+    prompt: 'What is the y-coordinate of the vertex of y = x^2 - 6x + 5?',
+    correctAnswer: '-4',
+    hints: ['Find the x-coordinate of the vertex first using x = -b / 2a.', 'Then substitute that x back into the equation to find y.'],
+    walkthrough: ['x = -(-6) / (2 * 1) = 3', 'y = (3)^2 - 6(3) + 5 = 9 - 18 + 5 = -4', 'The vertex is at (3, -4)'],
+    desmosConfig: { expressions: ['y=x^2-6x+5'] },
+  },
+]

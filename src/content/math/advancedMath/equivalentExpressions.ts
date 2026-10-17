@@ -1,0 +1,73 @@
+import type { Lesson, Question } from '../../types'
+
+export const lesson: Lesson = {
+  domain: 'advanced-math',
+  subsection: 'equivalent-expressions',
+  title: 'Equivalent Expressions',
+  summary: 'Simplify, expand, and factor expressions while keeping them mathematically equivalent.',
+  body: "These questions ask you to rewrite an expression in an equivalent form: expanding a product of binomials with FOIL (First, Outer, Inner, Last), factoring a quadratic by finding two numbers that multiply to c and add to b, simplifying a rational expression by canceling common factors, or combining like terms after distributing. Always double-check your simplified expression by plugging in a simple number (like x = 2) into both the original and your simplified version — they must give the same result.",
+  tips: [
+    'FOIL for (a + b)(c + d) gives ac + ad + bc + bd.',
+    'To factor x^2 + bx + c, find two numbers that multiply to c and add to b.',
+    'Verify any simplification by substituting a test number into both the original and simplified expressions.',
+  ],
+  videoId: 'REPLACE_WITH_REAL_ID',
+}
+
+export const questions: Question[] = [
+  {
+    id: 'am-ee-1',
+    domain: 'advanced-math',
+    subsection: 'equivalent-expressions',
+    difficulty: 'medium',
+    prompt: 'For x ≠ 3, which expression is equivalent to (x^2 - 9) / (x - 3)?',
+    choices: ['x + 3', 'x - 3', 'x + 9', 'x - 9'],
+    correctAnswer: 'x + 3',
+    hints: ['Factor the numerator as a difference of squares first.', 'Then cancel the common factor with the denominator.'],
+    walkthrough: ['x^2 - 9 factors to (x - 3)(x + 3)', 'Divide by (x - 3): (x - 3)(x + 3) / (x - 3) = x + 3', 'The (x - 3) factors cancel, leaving x + 3'],
+  },
+  {
+    id: 'am-ee-2',
+    domain: 'advanced-math',
+    subsection: 'equivalent-expressions',
+    difficulty: 'easy',
+    prompt: 'Which expression is equivalent to (x + 2)(x - 5)?',
+    choices: ['x^2 - 3x - 10', 'x^2 + 3x - 10', 'x^2 - 10', 'x^2 - 7x - 10'],
+    correctAnswer: 'x^2 - 3x - 10',
+    hints: ['Use FOIL: First, Outer, Inner, Last.', 'Combine the two middle (Outer and Inner) terms.'],
+    walkthrough: ['First: x * x = x^2', 'Outer + Inner: -5x + 2x = -3x', 'Last: 2 * -5 = -10, giving x^2 - 3x - 10'],
+  },
+  {
+    id: 'am-ee-3',
+    domain: 'advanced-math',
+    subsection: 'equivalent-expressions',
+    difficulty: 'medium',
+    prompt: 'Which expression is equivalent to x^2 + 7x + 12?',
+    choices: ['(x + 3)(x + 4)', '(x + 2)(x + 6)', '(x + 1)(x + 12)', '(x - 3)(x - 4)'],
+    correctAnswer: '(x + 3)(x + 4)',
+    hints: ['Find two numbers that multiply to 12 and add to 7.', 'Check 3 and 4.'],
+    walkthrough: ['3 * 4 = 12 and 3 + 4 = 7', 'So x^2 + 7x + 12 factors as (x + 3)(x + 4)', 'Expanding confirms this matches the original expression'],
+  },
+  {
+    id: 'am-ee-4',
+    domain: 'advanced-math',
+    subsection: 'equivalent-expressions',
+    difficulty: 'medium',
+    prompt: 'Which expression is equivalent to (3x^2y)(2xy^3)?',
+    choices: ['6x^3y^4', '6x^2y^3', '5x^3y^4', '6x^3y^3'],
+    correctAnswer: '6x^3y^4',
+    hints: ['Multiply the coefficients together separately from the variables.', 'When multiplying powers of the same base, add the exponents.'],
+    walkthrough: ['Coefficients: 3 * 2 = 6', 'x powers: x^2 * x^1 = x^3', 'y powers: y^1 * y^3 = y^4, giving 6x^3y^4'],
+  },
+  {
+    id: 'am-ee-5',
+    domain: 'advanced-math',
+    subsection: 'equivalent-expressions',
+    difficulty: 'easy',
+    prompt: 'Which expression is equivalent to 2(x + 3) + 4(x - 1)?',
+    choices: ['6x + 2', '6x + 10', '2x + 2', '6x - 2'],
+    correctAnswer: '6x + 2',
+    hints: ['Distribute each term first.', 'Then combine like terms.'],
+    walkthrough: ['Distribute: 2x + 6 + 4x - 4', 'Combine x terms: 2x + 4x = 6x', 'Combine constants: 6 - 4 = 2, giving 6x + 2'],
+  },
+]
