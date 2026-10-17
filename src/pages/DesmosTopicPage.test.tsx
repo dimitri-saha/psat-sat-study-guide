@@ -3,12 +3,15 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import DesmosTopicPage from './DesmosTopicPage'
 
+const mockTopic = {
+  slug: 'intersections', title: 'Finding Intersections', summary: 'Graph both sides.',
+  body: 'Explanation body.', tips: ['Tip one.'],
+  desmosConfig: { expressions: ['y=2x+1'] },
+}
+
 vi.mock('../content/index', () => ({
-  getDesmosTopic: () => ({
-    slug: 'intersections', title: 'Finding Intersections', summary: 'Graph both sides.',
-    body: 'Explanation body.', tips: ['Tip one.'],
-    desmosConfig: { expressions: ['y=2x+1'] },
-  }),
+  getDesmosTopics: () => [mockTopic],
+  getDesmosTopic: () => mockTopic,
 }))
 
 describe('DesmosTopicPage', () => {
