@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 
@@ -9,9 +9,10 @@ describe('App shell', () => {
         <App />
       </MemoryRouter>
     )
-    expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /reading & writing/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /^math$/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /desmos tricks/i })).toBeInTheDocument()
+    const nav = within(screen.getByRole('navigation'))
+    expect(nav.getByRole('link', { name: /home/i })).toBeInTheDocument()
+    expect(nav.getByRole('link', { name: /reading & writing/i })).toBeInTheDocument()
+    expect(nav.getByRole('link', { name: /^math$/i })).toBeInTheDocument()
+    expect(nav.getByRole('link', { name: /desmos tricks/i })).toBeInTheDocument()
   })
 })
