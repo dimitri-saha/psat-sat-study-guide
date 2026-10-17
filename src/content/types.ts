@@ -43,3 +43,12 @@ export interface SectionMeta {
   title: string
   domains: DomainMeta[]
 }
+
+export interface DesmosTopic {
+  slug: string
+  title: string
+  summary: string
+  body: string
+  tips: string[]
+  desmosConfig: DesmosConfig
+}
