@@ -1,0 +1,7 @@
+/* src/components/Practice.module.css */
+.questionArea { display: flex; gap: 1.5rem; }
+.choices { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0; }
+.selected { outline: 2px solid #2563eb; }
+.correct { color: #15803d; }
+.incorrect { color: #b91c1c; }
+.hints { color: #555; }
