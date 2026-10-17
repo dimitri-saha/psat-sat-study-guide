@@ -6,6 +6,7 @@ import { registerStandardEnglishConventions } from './readingWriting/standardEng
 import { registerAlgebra } from './math/algebra'
 import { registerAdvancedMath } from './math/advancedMath'
 import { registerProblemSolvingDataAnalysis } from './math/problemSolvingDataAnalysis'
+import { registerGeometryAndTrigonometry } from './math/geometryAndTrigonometry'
 
 export { getLesson, getQuestions } from './registry'
 
@@ -23,6 +24,11 @@ export const sections: SectionMeta[] = [
   {
     slug: 'math',
     title: 'Math',
-    domains: [registerAlgebra(), registerAdvancedMath(), registerProblemSolvingDataAnalysis()],
+    domains: [
+      registerAlgebra(),
+      registerAdvancedMath(),
+      registerProblemSolvingDataAnalysis(),
+      registerGeometryAndTrigonometry(),
+    ],
   },
 ]
