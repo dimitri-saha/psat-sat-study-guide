@@ -14,6 +14,21 @@ vi.mock('../content/index', () => ({
     prompt: 'Solve: x + 1 = 2', choices: ['1', '2'], correctAnswer: '1',
     hints: ['Subtract 1.'], walkthrough: ['x = 1'],
   }],
+  sections: [
+    {
+      slug: 'math',
+      title: 'Math',
+      domains: [
+        {
+          slug: 'algebra',
+          title: 'Algebra',
+          subsections: [
+            { slug: 'linear-equations-one-variable', title: 'Linear Equations' },
+          ],
+        },
+      ],
+    },
+  ],
 }))
 
 describe('SubsectionPage', () => {
