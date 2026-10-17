@@ -8,6 +8,7 @@ declare global {
       GraphingCalculator: (el: HTMLElement) => {
         setExpression: (expr: { latex: string }) => void
         setMathBounds: (bounds: { left: number; right: number; top: number; bottom: number }) => void
+        destroy?: () => void
       }
     }
   }
@@ -21,6 +22,10 @@ export default function DesmosCalculator({ config }: { config: DesmosConfig }) {
     const calculator = window.Desmos.GraphingCalculator(containerRef.current)
     config.expressions.forEach(latex => calculator.setExpression({ latex }))
     if (config.bounds) calculator.setMathBounds(config.bounds)
+
+    return () => {
+      calculator.destroy?.()
+    }
   }, [config])
 
   return <div ref={containerRef} className={styles.calculator} role="img" aria-label="Desmos graphing calculator" />
