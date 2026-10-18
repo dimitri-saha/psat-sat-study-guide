@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { getDesmosTopics, getDesmosTopic } from '../content/index'
 import DesmosCalculator from '../components/DesmosCalculator'
+import styles from './DesmosTopicPage.module.css'
 
 export default function DesmosTopicPage() {
   const { topicSlug } = useParams<{ topicSlug: string }>()
@@ -15,9 +16,12 @@ export default function DesmosTopicPage() {
     <div>
       <h1>{fullTopic.title}</h1>
       <p>{fullTopic.body}</p>
-      <ul>
-        {fullTopic.tips.map(tip => <li key={tip}>{tip}</li>)}
-      </ul>
+      <div className={styles.tips}>
+        <h2 className={styles.tipsHeading}>Tips</h2>
+        <ul className={styles.tipsList}>
+          {fullTopic.tips.map(tip => <li key={tip}>{tip}</li>)}
+        </ul>
+      </div>
       <DesmosCalculator config={fullTopic.desmosConfig} />
     </div>
   )

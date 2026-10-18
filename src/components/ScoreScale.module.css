@@ -1,0 +1,46 @@
+.scale {
+  display: grid;
+  gap: 1.1rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.range {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  align-items: center;
+  gap: 0 1rem;
+}
+
+.rangeLabel {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.rangeTrack {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-navy-bg), var(--color-navy));
+  grid-column: 2;
+}
+
+.rangeTicks {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-ink-faint);
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 30rem) {
+  .range {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .rangeTrack,
+  .rangeTicks {
+    grid-column: 1;
+  }
+}

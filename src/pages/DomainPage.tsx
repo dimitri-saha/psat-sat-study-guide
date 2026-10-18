@@ -1,6 +1,8 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { sections, getQuestions } from '../content/index'
 import { readCorrectCount } from '../hooks/useProgress'
+import RowLink from '../components/RowLink'
+import ProgressBar from '../components/ProgressBar'
 
 export default function DomainPage() {
   const { sectionSlug, domainSlug } = useParams<{ sectionSlug: string; domainSlug: string }>()
@@ -11,18 +13,20 @@ export default function DomainPage() {
   return (
     <div>
       <h1>{domain.title}</h1>
-      <ul>
+      <div>
         {domain.subsections.map(sub => {
           const questions = getQuestions(domain.slug, sub.slug)
           const correct = readCorrectCount(`${domain.slug}/${sub.slug}`, questions.map(q => q.id))
           return (
-            <li key={sub.slug}>
-              <Link to={`/${section.slug}/${domain.slug}/${sub.slug}`}>{sub.title}</Link>
-              {' '}<span>({correct} / {questions.length} correct)</span>
-            </li>
+            <RowLink
+              key={sub.slug}
+              to={`/${section.slug}/${domain.slug}/${sub.slug}`}
+              title={sub.title}
+              meta={<ProgressBar correct={correct} total={questions.length} />}
+            />
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }

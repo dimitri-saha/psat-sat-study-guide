@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getLesson, getQuestions, sections } from '../content/index'
 import LessonView from '../components/LessonView'
 import Practice from '../components/Practice'
+import styles from './SubsectionPage.module.css'
 
 export default function SubsectionPage() {
   const { sectionSlug, domainSlug, subsectionSlug } = useParams<{ sectionSlug: string; domainSlug: string; subsectionSlug: string }>()
@@ -19,13 +20,29 @@ export default function SubsectionPage() {
 
   return (
     <div>
-      <div role="tablist">
-        <button onClick={() => setTab('lesson')} aria-pressed={tab === 'lesson'}>Lesson</button>
-        <button onClick={() => setTab('practice')} aria-pressed={tab === 'practice'}>Practice</button>
+      <div className={styles.tabs} role="tablist">
+        <button
+          type="button"
+          className={tab === 'lesson' ? styles.tabActive : styles.tab}
+          onClick={() => setTab('lesson')}
+          aria-pressed={tab === 'lesson'}
+        >
+          Lesson
+        </button>
+        <button
+          type="button"
+          className={tab === 'practice' ? styles.tabActive : styles.tab}
+          onClick={() => setTab('practice')}
+          aria-pressed={tab === 'practice'}
+        >
+          Practice
+        </button>
       </div>
-      {tab === 'lesson'
-        ? <LessonView lesson={lesson} />
-        : <Practice subsectionKey={`${domainSlug}/${subsectionSlug}`} questions={questions} />}
+      <div className={styles.panel}>
+        {tab === 'lesson'
+          ? <LessonView lesson={lesson} />
+          : <Practice subsectionKey={`${domainSlug}/${subsectionSlug}`} questions={questions} />}
+      </div>
     </div>
   )
 }

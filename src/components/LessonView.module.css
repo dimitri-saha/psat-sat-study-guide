@@ -1,3 +1,57 @@
-/* src/components/LessonView.module.css */
-.summary { font-style: italic; color: #555; }
-.tips { background: #f5f5f5; border-radius: 4px; padding: 1rem; margin: 1rem 0; }
+.summary {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-ink-soft);
+  max-width: none;
+}
+
+.tips {
+  border-left: 3px solid var(--color-gold-ink);
+  background: var(--color-gold-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.tipsHeading {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  margin: 0 0 0.5rem;
+}
+
+.tipsList {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tipsList li {
+  color: var(--color-ink);
+  font-size: 0.94rem;
+}
+
+.videoFrame {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  aspect-ratio: 16 / 9;
+  margin-top: 1.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg-raised);
+}
+
+.videoFrame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

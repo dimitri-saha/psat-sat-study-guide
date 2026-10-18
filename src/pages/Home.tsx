@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
 import { sections, getQuestions } from '../content/index'
 import { readCorrectCount } from '../hooks/useProgress'
+import ScoreScale from '../components/ScoreScale'
+import ProgressBar from '../components/ProgressBar'
+import RowLink from '../components/RowLink'
+import styles from './Home.module.css'
 
 export default function Home() {
   let total = 0
@@ -17,18 +20,35 @@ export default function Home() {
 
   return (
     <div>
-      <h1>PSAT/SAT Study Guide</h1>
-      <p>
-        The digital SAT has two sections: Reading & Writing and Math. Each is scored
-        200-800, for a combined 400-1600. Pick a section below, work through the lesson
-        for a subsection, then practice with hints and full walkthroughs.
+      <h1>Score your way to a 1600.</h1>
+      <p className={styles.lead}>
+        The digital SAT has two sections, each scored 200&ndash;800. Pick a section below,
+        work through the lesson for a subsection, then practice with hints and full walkthroughs.
       </p>
-      <p>{correct} / {total} correct overall</p>
-      <ul>
-        <li><Link to="/reading-writing">Reading & Writing</Link></li>
-        <li><Link to="/math">Math</Link></li>
-        <li><Link to="/desmos-tricks">Desmos Tricks</Link></li>
-      </ul>
+
+      <ScoreScale />
+
+      <div className={styles.progressRow}>
+        <ProgressBar correct={correct} total={total} suffix="correct overall" />
+      </div>
+
+      <div className={styles.sections}>
+        <RowLink
+          to="/reading-writing"
+          title="Reading & Writing"
+          description="Information and ideas, craft and structure, expression of ideas, conventions."
+        />
+        <RowLink
+          to="/math"
+          title="Math"
+          description="Algebra, advanced math, problem-solving and data analysis, geometry and trig."
+        />
+        <RowLink
+          to="/desmos-tricks"
+          title="Desmos Tricks"
+          description="Calculator techniques that save time on the math section."
+        />
+      </div>
     </div>
   )
 }

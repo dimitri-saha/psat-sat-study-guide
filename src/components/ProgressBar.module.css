@@ -1,0 +1,35 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  min-width: 4rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 7px,
+    var(--color-bg) 7px,
+    var(--color-bg) 8px
+  );
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: var(--color-gold-ink);
+  border-radius: inherit;
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}

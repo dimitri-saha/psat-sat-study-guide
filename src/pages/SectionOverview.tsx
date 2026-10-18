@@ -1,6 +1,8 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { sections, getQuestions } from '../content/index'
 import { readCorrectCount } from '../hooks/useProgress'
+import RowLink from '../components/RowLink'
+import ProgressBar from '../components/ProgressBar'
 
 export default function SectionOverview() {
   const { sectionSlug } = useParams<{ sectionSlug: string }>()
@@ -10,7 +12,7 @@ export default function SectionOverview() {
   return (
     <div>
       <h1>{section.title}</h1>
-      <ul>
+      <div>
         {section.domains.map(domain => {
           let total = 0
           let correct = 0
@@ -20,13 +22,15 @@ export default function SectionOverview() {
             correct += readCorrectCount(`${domain.slug}/${sub.slug}`, questions.map(q => q.id))
           }
           return (
-            <li key={domain.slug}>
-              <Link to={`/${section.slug}/${domain.slug}`}>{domain.title}</Link>
-              {' '}<span>({correct} / {total} correct)</span>
-            </li>
+            <RowLink
+              key={domain.slug}
+              to={`/${section.slug}/${domain.slug}`}
+              title={domain.title}
+              meta={<ProgressBar correct={correct} total={total} />}
+            />
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }

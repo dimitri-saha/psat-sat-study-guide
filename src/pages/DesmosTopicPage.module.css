@@ -1,0 +1,29 @@
+.tips {
+  border-left: 3px solid var(--color-gold-ink);
+  background: var(--color-gold-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.tipsHeading {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  margin: 0 0 0.5rem;
+}
+
+.tipsList {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tipsList li {
+  color: var(--color-ink);
+  font-size: 0.94rem;
+}
