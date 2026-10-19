@@ -20,8 +20,8 @@ describe('DesmosCalculator', () => {
 
     await waitFor(() => {
       expect(window.Desmos.GraphingCalculator).toHaveBeenCalled()
-      expect(setExpression).toHaveBeenCalledWith({ latex: 'y=2x+1' })
-      expect(setExpression).toHaveBeenCalledWith({ latex: 'y=x^2' })
+      expect(setExpression).toHaveBeenCalledWith({ id: 'preset-0', latex: 'y=2x+1' })
+      expect(setExpression).toHaveBeenCalledWith({ id: 'preset-1', latex: 'y=x^2' })
     })
   })
 

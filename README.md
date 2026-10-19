@@ -41,6 +41,19 @@ of each lesson's content and was deliberately deferred, so embedded videos are
 non-functional until a future curation pass replaces these placeholders with
 real IDs.
 
+## Unlimited math practice
+
+Every math subsection has a question generator in `src/content/generators/math.ts`.
+After a student finishes the hand-written questions, practice keeps going with
+freshly randomized SAT-style questions (new numbers, answer choices, hints, and
+walkthroughs every time). Each math question shows a **blank** Desmos calculator —
+students type the equations themselves — and "Show the Desmos solution" loads the
+worked graph only after they submit.
+
+To add a new question type, add another template to the `pick([...])` list in the
+matching generator; `generators.test.ts` runs every generator thousands of times to
+catch malformed questions.
+
 ## Adding more content
 
 Every lesson and its practice questions live in one file under `src/content/`,

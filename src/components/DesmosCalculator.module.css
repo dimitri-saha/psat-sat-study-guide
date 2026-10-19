@@ -6,3 +6,8 @@
   border-radius: var(--radius);
   overflow: hidden;
 }
+
+.tall {
+  height: min(560px, 70vh);
+  min-height: 380px;
+}

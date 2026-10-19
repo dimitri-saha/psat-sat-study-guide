@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getLesson, getQuestions, sections } from '../content/index'
+import { getGenerator } from '../content/generators'
 import LessonView from '../components/LessonView'
 import Practice from '../components/Practice'
 import styles from './SubsectionPage.module.css'
@@ -41,7 +42,15 @@ export default function SubsectionPage() {
       <div className={styles.panel}>
         {tab === 'lesson'
           ? <LessonView lesson={lesson} />
-          : <Practice subsectionKey={`${domainSlug}/${subsectionSlug}`} questions={questions} />}
+          : (
+            <Practice
+              key={`${domainSlug}/${subsectionSlug}`}
+              subsectionKey={`${domainSlug}/${subsectionSlug}`}
+              questions={questions}
+              generate={getGenerator(domainSlug, subsectionSlug)}
+              showCalculator={section.slug === 'math'}
+            />
+          )}
       </div>
     </div>
   )

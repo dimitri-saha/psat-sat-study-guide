@@ -1,6 +1,6 @@
 // src/components/Practice.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import Practice from './Practice'
 import type { Question } from '../content/types'
 
@@ -74,9 +74,53 @@ describe('Practice', () => {
     expect(screen.getByText(/correct/i)).toBeInTheDocument()
   })
 
-  it('does not render a Desmos pane when desmosConfig is absent', () => {
+  it('does not render a Desmos pane unless showCalculator is set', () => {
     render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[mcQuestion]} />)
     expect(screen.queryByRole('img', { name: /desmos graphing calculator/i })).not.toBeInTheDocument()
+  })
+
+  it('renders a blank Desmos calculator for every question when showCalculator is set', () => {
+    const setExpression = vi.fn()
+    window.Desmos = { GraphingCalculator: vi.fn(() => ({ setExpression, setMathBounds: vi.fn() })) }
+    const withConfig = { ...gridInQuestion, desmosConfig: { expressions: ['y=5x-7', 'y=2x+8'] } }
+    render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[withConfig]} showCalculator />)
+    expect(screen.getByRole('img', { name: /desmos graphing calculator/i })).toBeInTheDocument()
+    expect(setExpression).not.toHaveBeenCalled()
+
+    fireEvent.change(screen.getByRole('textbox', { name: /your answer/i }), { target: { value: '5' } })
+    fireEvent.click(screen.getByRole('button', { name: /submit/i }))
+    fireEvent.click(screen.getByRole('button', { name: /show the desmos solution/i }))
+    expect(setExpression).toHaveBeenCalledWith({ id: 'preset-0', latex: 'y=5x-7' })
+  })
+
+  it('accepts an equivalent decimal for a fraction grid-in answer', () => {
+    const fractionQuestion = { ...gridInQuestion, correctAnswer: '-1/3' }
+    render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[fractionQuestion]} />)
+    fireEvent.change(screen.getByRole('textbox', { name: /your answer/i }), { target: { value: '-.3333' } })
+    fireEvent.click(screen.getByRole('button', { name: /submit/i }))
+    expect(screen.getByText('Correct!')).toBeInTheDocument()
+  })
+
+  it('keeps serving generated questions after the fixed set runs out', () => {
+    let n = 0
+    const generate = (): Question => ({ ...gridInQuestion, id: `gen-${n}`, prompt: `Generated prompt ${n++}` })
+    render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[gridInQuestion]} generate={generate} />)
+    expect(screen.getByText(/unlimited practice/i)).toBeInTheDocument()
+    for (let i = 0; i < 3; i++) {
+      fireEvent.change(screen.getByRole('textbox', { name: /your answer/i }), { target: { value: '5' } })
+      fireEvent.click(screen.getByRole('button', { name: /submit/i }))
+      fireEvent.click(screen.getByRole('button', { name: /next question/i }))
+    }
+    expect(screen.getByText('Generated prompt 2')).toBeInTheDocument()
+    expect(screen.getByText('Question 4')).toBeInTheDocument()
+  })
+
+  it('toggles mark for review', () => {
+    render(<Practice subsectionKey="algebra/linear-equations-one-variable" questions={[mcQuestion]} />)
+    const mark = screen.getByRole('button', { name: /mark for review/i })
+    fireEvent.click(mark)
+    expect(mark).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByText(/1 marked/i)).toBeInTheDocument()
   })
 
   it('shows the walkthrough only after the button is clicked', () => {
